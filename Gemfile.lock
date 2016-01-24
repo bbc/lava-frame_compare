@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    device_api (1.0.1)
+    device_api-android (1.2.1)
+      device_api (>= 1.0, < 2.0)
+    rmagick (2.15.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  device_api-android
+  rmagick
+
+BUNDLED WITH
+   1.11.0
