@@ -10,7 +10,7 @@ module Lava
     
     # Initialize a capture session
     # Takes a number of args:
-    # * session (optional) -- name for the capture session
+    # * name (optional) -- name for the capture session
     # * dir (optional) -- directory to save the screenshots
     # * capture (required) -- lambda for performing a screenshot
     # The lambda should take a single argument filename:
@@ -18,7 +18,7 @@ module Lava
     #           code_to_perform_screenshot( :save_to => filename )
     #         }
     def initialize( args )
-      @name = args[:session] || Time.now.to_i
+      @name = args[:name] || Time.now.to_i
       @code = args[:capture] or raise 'Need to provide a lambda to the constructor'
       @tmp_dir = "/tmp/isa/#{@name}"
       @dir = args[:dir] || @tmp_dir
@@ -77,7 +77,7 @@ module Lava
       if !filename
         filename = "#{@dir}/#{@name}.gif"
       else
-        filename = "#{@dir}/#{@filename}"
+        filename = "#{@dir}/#{filename}"
       end
       images.ticks_per_second = 2
       puts "Writing to #{filename}"
