@@ -4,3 +4,5 @@ gem 'rmagick'
 
 gem 'device_api-android'
 
+gem 'rspec'
+
