@@ -18,10 +18,10 @@ module Lava
     
       raise "frame_capture lambda function required" if !args[:frame_capture] || args[:capture]
     
-      Lava::Session.new( :name          => args[:name],
-                         :frame_capture => args[:frame_capture] || args[:capture],
-                         :dir           => args[:dir],
-                         :audio_sample  => args[:audio_sample] )
+      Lava::Session.new( :name           => args[:name],
+                         :frame_capture  => args[:frame_capture] || args[:capture],
+                         :dir            => args[:dir],
+                         :audio_sampler  => args[:audio_sampler] )
     
     end
     

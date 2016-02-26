@@ -1,5 +1,6 @@
 require 'rmagick'
 require 'fileutils'
+require 'lava/sample'
 
 module Lava
 
@@ -12,13 +13,14 @@ module Lava
   # Main class for managing the capture sessions
   class Session
     
-    attr_accessor :name, :dir, :samples, :frame_capture #, :audio_sample
+    attr_accessor :name, :dir, :samples, :frame_capture, :audio_sampler
     
     # Initialize a capture session
     def initialize( args = {} )
       @name = args[:name] || Time.now.to_i
       @dir = args[:dir] || "#{DEFAULT_TMP_DIR}/#{@name}"
       @frame_capture = args[:frame_capture] or raise ArgumentError, 'Need to provide a lambda to the constructor'
+      @audio_sampler = args[:audio_sampler]
       @samples = []
       FileUtils.mkdir_p(@dir)
       File.directory?(@dir) or raise "Couldn't create session directory for screen grabs"
@@ -33,10 +35,11 @@ module Lava
       capture_time = Time.now
       
       @frame_capture.call(file)
+      volume = @audio_sampler.call(file) if @audio_sampler
       
       File.exist? file or raise "Couldn't capture frame"
 
-      sample = Lava::Sample.new( :file => file, :time => capture_time, :last => samples.last )
+      sample = Lava::Sample.new( :file => file, :time => capture_time, :last => samples.last, :volume => volume )
       samples << sample
       sample
     end
