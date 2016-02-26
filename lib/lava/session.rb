@@ -35,7 +35,7 @@ module Lava
       capture_time = Time.now
       
       @frame_capture.call(file)
-      volume = @audio_sampler.call(file) if @audio_sampler
+      volume = @audio_sampler.call if @audio_sampler
       
       File.exist? file or raise "Couldn't capture frame"
 
