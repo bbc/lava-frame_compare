@@ -26,8 +26,8 @@ failed.
 
 ## Dependencies
 
-The gem is very simple and doesn't do any capture itself -- you'll need to
-have some mechanism for doing that yourself. We use the device_api gem for
+The gem is very simple and doesn't do any captures itself -- you'll need to
+have some mechanism for doing that. We use the device_api gem for
 grabbing screenshots from physical android and ios devices.
 
 The gem uses [ImageMagick](http://www.imagemagick.org/) to perform the
@@ -56,7 +56,21 @@ giving it a directory where you want the screen shots.
     end
 
     # Finish the session and create the composite
-    file = session.end( './composite.gif' )
+    session.end( file: './composite.gif' )
+
+There are a number of options for generating the composit file:
+
+    # Create a significantly smaller gif file by skipping every other frame
+    session.end( :step => 2 )
+    
+    # Speed up the gif playback
+    session.end( :speed => 5) # 5x speed
+    
+    # Rotate the image
+    session.end( :rotate => 90 ) # 90 degrees
+    
+    # Set the max dimensions of the image
+    session.end( :max_width => 100, :max_height => 100 )
     
 ## License
 

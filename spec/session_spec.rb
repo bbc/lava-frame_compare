@@ -114,6 +114,12 @@ RSpec.describe Lava::Session do
       expect( `file #{gif_file}` ).to match /GIF\simage\sdata.*x 750/
     end
     
+    it "takes a sample argument for creating a smaller gif file" do
+      session.end(:file => gif_file, :step => 2 )
+      expect( File.exist? gif_file ).to be true
+      expect( File.size(gif_file) ).to be < 600000
+      expect( `file #{gif_file}` ).to match /GIF\simage\sdata.*750 x/
+    end
     
   end
 end
