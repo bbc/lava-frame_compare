@@ -118,7 +118,6 @@ RSpec.describe Lava::Session do
       session.end(:file => gif_file, :step => 2 )
       expect( File.exist? gif_file ).to be true
       expect( File.size(gif_file) ).to be < 600000
-      p gif_file
       expect( `file #{gif_file}` ).to match /GIF\simage\sdata.*750 x/
     end
     
