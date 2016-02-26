@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'lava-frame_compare'
-  s.version     = '0.1.0'
-  s.date        = '2015-02-25'
+  s.version     = '0.1.1'
+  s.date        = '2015-02-26'
   s.summary     = 'Lava FrameCompare'
   s.description = 'Analysis tool for performing video frame comparisons'
   s.authors     = ['BBC', 'David Buckhurst']

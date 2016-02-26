@@ -67,15 +67,17 @@ module Lava
       end
       
       rotate = args[:rotate] || 0
+      step = args[:step] || 1
       max_width = args[:max_width] || Lava::DEFAULT_MAX_WIDTH
       max_height = args[:max_height] || Lava::DEFAULT_MAX_HEIGHT
       speed = args[:speed] || Lava::DEFAULT_SPEED
       
       
       rimages = Magick::ImageList.new
-      samples.each do |s|
-        s.rimage.resize_to_fit!(max_width, max_height)
+      (0 ... samples.count ).step(step).each do |i|
+        s = samples[i]
         s.rimage.rotate! rotate
+        s.rimage.resize_to_fit!(max_width, max_height)
         rimages << s.rimage
       end
       rimages.ticks_per_second = speed
