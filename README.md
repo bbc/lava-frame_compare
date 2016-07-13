@@ -8,14 +8,14 @@ We use our lava libs for checking video playback on our device tests.
 ## Why would you use it?
 
 We run a lot of tests that capture screenshots or look at video playback. 
-Often we'll take several screenshots or video sampes over the duration 
+Often we'll take several screenshots or video samples over the duration 
 of a test and we wanted some way of comparing
 the captures over the test run in order to determine if video playback is
 working.
 
 Lava performs a diff between frames and returns an integer representing
 the amount of change between screenshots. A value of zero indicates the
-frames are identical. Wheras a value in the thousands indicates a large
+frames are identical. Whereas a value in the thousands indicates a large
 differential between the frames. We find this diff technique gives us a
 good indication that video is playing in our tests, and will also spot
 buffering problems and crashes (the diff value drops significantly).
